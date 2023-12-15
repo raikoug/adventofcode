@@ -8,27 +8,30 @@ def get_column_as_string(m: list, col: int):
     """
     return "".join([row[col] for row in m])
 
-def expand_universe(m: list):
+def get_row_cols_with_galaxies(m: list)-> list:
     """
-        Expand the universe by doubling the ROWs and COLs not containing a galaxy ("#")
-         Space is "." and galaxy is "#" 
+        Get the ROWs and COLs with galaxies
     """
-    
-    for i in reversed(range(len(m))):
-        if "#" not in m[i]:
-            m.insert(i, "."*len(m[i]))
-    
-    for i in reversed(range(len(m[0]))):
+    rows = list()
+    cols = list()
+    for i, row in enumerate(m):
+        if "#" not in row:
+            rows.append(i)
+    for i in range(len(m[0])):
         column = get_column_as_string(m, i)
         if "#" not in column:
-            m = [row[:i] + "." + row[i:] for row in m]
+            cols.append(i)
     
+    ic(rows, cols)
+    return rows, cols 
+
+def get_galaxies(m: list)-> list:
     galaxies = list()
     for i, row in enumerate(m):
         tmpgalaxies = [m.start() for m in re.finditer('#', row)]
         if tmpgalaxies:
             galaxies.extend([(i, g) for g in tmpgalaxies])    
-    return m, galaxies   
+    return galaxies   
 
 def write_universe(m: list):
     """
@@ -38,9 +41,10 @@ def write_universe(m: list):
         for row in m:
             f.write(row+"\n")
 
-def calc_distance(points: list)-> int:
+def calc_distance(points: list, rows: list ,cols: list, expansion: int)-> int:
     """
-        Calculate the distance between two points
+        Calculate the distance between two points, if row or cols pass through the rows or cols,
+        add expansion to the distance for each them
     """
     g1 = points[0]
     g2 = points[1]
@@ -52,19 +56,31 @@ def calc_distance(points: list)-> int:
     hd = abs(g1[0] - g2[0])
     # vertical distance
     vd = abs(g1[1] - g2[1])
-    return hd + vd 
+
+    # check how many rows in the rows list are between the 2 galaxys
+    galaxy_rows = [min(g1[0], g2[0]), max(g1[0], g2[0])]
+    galaxy_cols = [min(g1[1], g2[1]), max(g1[1], g2[1])]
+
+    rows_between = [r for r in rows if r > galaxy_rows[0] and r < galaxy_rows[1]]
+    cols_between = [c for c in cols if c > galaxy_cols[0] and c < galaxy_cols[1]]
+
+
+    exp = (len(rows_between) + len(cols_between)) * expansion
+
+
+    return hd + vd + exp
 
 if __name__ == "__main__":
     tf = open("../input.txt", "r").read().split("\n")
-    
+    expansion = 1000000
     #expand the universe! (and map galaxies)
-    universe, galaxies = expand_universe(tf)
-
+    galaxies = get_galaxies(tf)
+    rows,cols = get_row_cols_with_galaxies(tf)
 
     total = 0
     points = list(combinations(galaxies, 2))
     for point in points:
-        distance = calc_distance(point)
+        distance = calc_distance(point,rows,cols, expansion-1)
         total += distance
 
     ic(total)
