@@ -2,11 +2,15 @@ use strict;
 use warnings;
 use Path::Tiny;
 
+use lib 'C:\Users\raikoug\SyncThing\shared_code_tests\adventOfCode\2023\Solutions\perl';
+use AOCUtils;
 
-my $file_path = "C:\\Users\\raikoug\\SyncThing\\shared_code_tests\\adventOfCode\\2023\\day_01\\input.txt";
-open my $fh, '<', $file_path or die "Could not open file '$file_path' $!";
-my @input_list = <$fh>;
-close $fh;
+# my $file_path = "C:\\Users\\raikoug\\SyncThing\\shared_code_tests\\adventOfCode\\2023\\day_01\\input.txt";
+# open my $fh, '<', $file_path or die "Could not open file '$file_path' $!";
+# my @input_list = <$fh>;
+# close $fh;
+
+my @input_list = AOCUtils::get_day_input(1);
 
 my $res = 0;
 # loop through each row, get first and last number, join them, and add them to the result
@@ -19,7 +23,7 @@ foreach my $row (@input_list) {
 
 print "Part 1: $res\n";
 
-my $res = 0;
+$res = 0;
 # loop through each row, get first and last number, join them, and add them to the result
 #  if only one number, join it with itself
 #   now even literal numbers count 'one', 'two', 'three', etc, these hase to be 
