@@ -13,6 +13,7 @@ pub fn get_file_path(day: u32, test: bool) -> String {
 
 pub fn get_file_content(day: u32, test: bool) -> Result<Vec<String>, std::io::Error> {
     let path = get_file_path(day, test);
+    println!("path: {}", path);
     let content = fs::read_to_string(path)?;
     let lines = content.lines().map(|line| line.to_string()).collect();
     Ok(lines)
