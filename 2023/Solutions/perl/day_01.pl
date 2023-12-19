@@ -1,14 +1,12 @@
 use strict;
 use warnings;
 use Path::Tiny;
+use FindBin;
 
-use lib 'C:\Users\raikoug\SyncThing\shared_code_tests\adventOfCode\2023\Solutions\perl';
+use lib "$FindBin::Bin";
+use lib "$FindBin::Bin/2023/Solutions/perl";
 use AOCUtils;
 
-# my $file_path = "C:\\Users\\raikoug\\SyncThing\\shared_code_tests\\adventOfCode\\2023\\day_01\\input.txt";
-# open my $fh, '<', $file_path or die "Could not open file '$file_path' $!";
-# my @input_list = <$fh>;
-# close $fh;
 
 my @input_list = AOCUtils::get_day_input(1);
 
