@@ -7,6 +7,51 @@ tf = aoc_utils.get_day_input(day)
 
 
 
+class MyRange:
+    origin: int
+    destination: int
+    span: int
+
+    def __init__(self, origin: int, destination: int, span: int ):
+        self.origin = origin
+        self.destination = destination
+        self.span = span
+    
+    def __str__(self):
+        return f"{self.origin} {self.destination} {self.span}"
+    
+    def __repr__(self):
+        return self.__str__()
+
+class Mapping:
+    origin: str
+    destination: str
+    ranges: list() # list of MyRange istances
+
+    def __init__(self, line: str):
+        mapping = line.split(" ")[0]
+        origin, _, destination = mapping.split("-")
+        self.origin = origin
+        self.destination = destination
+        self.ranges = list()
+
+    def add_range(self, r: str):
+        # each r is 3 numbers divided by space
+        orgi, dest, span = r.split(" ")
+        self.ranges.append(MyRange(int(orgi), int(dest), int(span)))
+
+    def __str__(self) -> str:
+        res = "" 
+        res += f"{self.origin} to {self.destination}\n"
+        for r in self.ranges:
+            res += f"\t└─{r}\n"
+        return res
+    
+    def __repr__(self) -> str:
+        return self.__str__()
+
+
+
 def get_seeds():
     # line 1 of tf
     line = tf[0].split(":")[1].strip()
