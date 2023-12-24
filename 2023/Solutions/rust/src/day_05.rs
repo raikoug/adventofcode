@@ -108,9 +108,9 @@ pub fn part_2_seeds(input: String) -> Vec<i64>{
     Vec::new()
 }
 
-pub fn part_2_mapping(input: Vec<String>) -> (Vec<i64>,HashMap<String, Mapping>) {
-    1
-}
+//pub fn part_2_mapping(input: Vec<String>) -> (Vec<i64>,HashMap<String, Mapping>) {
+//    1
+//}
 
 pub fn print_mappings(mappings: &HashMap<String, Mapping>) {
     for (k, v) in mappings {
