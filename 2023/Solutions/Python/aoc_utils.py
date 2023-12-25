@@ -22,3 +22,16 @@ def get_file_path(day: int, test: bool = False):
     file_name = f"{"test_" if test else ""}input.txt"
     file_path = BASE / f"day_{day:02}" / file_name
     return file_path
+
+
+def read_strip(day: int, test: bool = False) -> list:
+    """
+    Returns the input as list of rows for the given day.
+    input will be in the day folder (day_XX) and filename are
+        input.txt
+        test_input.txt
+    """
+    file_path = get_file_path(day, test)
+
+    #ic(file_path)
+    return file_path.read_text().strip()
