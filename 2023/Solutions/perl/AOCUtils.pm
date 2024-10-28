@@ -20,7 +20,7 @@ sub get_day_input {
 sub get_file_path {
     my ($day, $is_test) = @_;
     $is_test //= 0;
-    my $file_name = sprintf("C:/Users/raikoug/SyncThing/shared_code_tests/adventOfCode/2023/day_%02d/%sinput.txt", $day, $is_test ? "test_" : "");
+    my $file_name = sprintf("C:/syncthing/shared_code_tests/adventOfCode/2023/day_%02d/%sinput.txt", $day, $is_test ? "test_" : "");
     return File::Spec->rel2abs($file_name);
 }
 

@@ -1,7 +1,14 @@
 from pathlib import Path
 from icecream import ic
 
-BASE = Path(f"C:/Users/raikoug/SyncThing/shared_code_tests/adventOfCode/2023/")
+BASE = Path(f"C:/syncthing/shared_code_tests/adventOfCode/2023")
+
+def save_path(day: int) -> str:
+    """
+    Returns the path to save optional files for the given day.
+    """
+    return BASE / f"day_{day:02}" 
+
 def get_day_input(day: int, test: bool = False, second: bool = False) -> list:
     """
     Returns the input as list of rows for the given day.
