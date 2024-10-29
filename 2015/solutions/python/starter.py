@@ -8,3 +8,4 @@ sys.path.append(str(pythonclass))
 
 from pythonclass import AOC
 CURRENT_YEAR = int(folder.parent.parent.name)
+
