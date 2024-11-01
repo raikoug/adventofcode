@@ -20,5 +20,5 @@ create_files() {
     touch $dirname/input_1.txt
     touch $dirname/indstructions.md
 }
-
+cd /home/raikoug/SyncThing/SharedCodeTest/adventOfCode/2015/inputs/
 create_files

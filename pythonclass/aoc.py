@@ -9,6 +9,10 @@ class AOC:
         # return the file in a unic string with`\n` as separator
         file_path = self.base_year_path / Path(f"inputs/day_{day:0>2}/input_{input}.txt")
         return file_path.read_text()
+    
+    def get_day_folder_path(self, day: int) -> Path:
+        day_path = self.base_year_path / Path(f"inputs/day_{day:0>2}/")
+        return day_path
         
 
 
