@@ -25,6 +25,8 @@ fn main() {
         (3, 2) => days::day_03::part_2(&input),
         (4, 1) => days::day_04::part_1(&input),
         (4, 2) => days::day_04::part_2(&input),
+        (6, 1) => days::day_06::part_1(&input),
+        (6, 2) => days::day_06::part_2(&input),
         // Aggiungi altri giorni e parti qui
         _ => println!("Soluzione non implementata per questo giorno e parte"),
     }
